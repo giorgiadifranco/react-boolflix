@@ -1,32 +1,27 @@
-import { useState, useContext} from 'react'
+import { useState } from 'react';
+import { useFilmsContext } from '../context/GlobalContext';
 
-import FilmsContext from '../context/GlobalContext'
+function SearchBar() {
+    const [title, setTitle] = useState('');
+    const { setSearchTitle } = useFilmsContext();
 
-export default function SearchBar(){
+    const handleSearch = () => {
+        setSearchTitle(title);
+    };
 
-    const {films} = useContext(FilmsContext);
-    const [film, setFilms]
-
-
-
-
-    function handleInputSubmit(){
-
-    
-
-
-    }
-
-    return(
-
+    return (
         <>
-            <div className="input-group mb-3">
-                <input type="text" className="form-control" placeholder="search movies" aria-label="search movies" aria-describedby="basic-addon2" />
-                <div className="input-group-append">
-                <button className="btn btn-outline-secondary" type="button">Search</button>
-                </div>
-            </div>
-        
+        <div>
+            <input
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="Cerca un film.."
+            />
+            <button onClick={handleSearch}>Cerca</button>
+        </div>
         </>
-    )
+    );
 }
+
+export default SearchBar;
