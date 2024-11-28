@@ -14,8 +14,13 @@ export default function FilmsContextProvider({children}){
     
 
     function fetchResults(title){
-        
-        const url_films = `https://api.themoviedb.org/3/search/movie?api_key=3d5a0c215d6ca4a4fe980f405ca9b287&query=${title}`;
+
+        if (!title || title === '') {
+            console.error('nessun risultato trovato!');
+            return;
+        }
+        const apiKey = '3d5a0c215d6ca4a4fe980f405ca9b287'
+        const url_films = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${title}`;
 
 
         fetch(url_films)
@@ -26,7 +31,8 @@ export default function FilmsContextProvider({children}){
             
         })
 
-        useEffect(fetchResults, [])
+    }
+    useEffect(fetchResults, [])
 
         {/* fornire il valore ai children*/}
         return(
@@ -41,9 +47,5 @@ export default function FilmsContextProvider({children}){
 
 
         )
-
-
-
-    }
 
 }
