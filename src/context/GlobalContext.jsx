@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useContext } from 'react';
 
 
 //creo il contesto
@@ -8,7 +8,7 @@ const FilmsContext = createContext();
 
 //creare provider --> cosa fa? servire i dati tramite chiamata fetch
 
-export default FilmsContextProvider ({children}){
+export default function FilmsContextProvider({children}){
 
     const [ films, setFilms] = useState ([])
     
@@ -22,13 +22,13 @@ export default FilmsContextProvider ({children}){
         .then(resp =>resp.json())
         .then(({results}) =>{
             console.log(results);
-            setPosts(results)
+            setFilms(results)
             
         })
 
         useEffect(fetchResults, [])
-        
-        {/* fornire il contesto ai children*/}
+
+        {/* fornire il valore ai children*/}
         return(
 
             
