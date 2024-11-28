@@ -11,6 +11,7 @@ const FilmsContext = createContext();
 export default function FilmsContextProvider({children}){
 
     const [ films, setFilms] = useState ([])
+    const [searchTitle, setSearchTitle] = useState('');
     
 
     function fetchResults(title){
@@ -32,13 +33,17 @@ export default function FilmsContextProvider({children}){
         })
 
     }
-    useEffect(fetchResults, [])
+    useEffect(() => {
+        if (searchTitle) {
+            fetchResults (searchTitle);
+}
+}, [searchTitle])
 
         {/* fornire il valore ai children*/}
         return(
 
             
-            <FilmsContext.Provider value={{films}}>
+            <FilmsContext.Provider value={{films, setSearchTitle}}>
 
                 {children}
 
@@ -48,4 +53,8 @@ export default function FilmsContextProvider({children}){
 
         )
 
+}
+
+export function useFilmsContext() {
+    return useContext(FilmsContext);
 }
