@@ -3,8 +3,12 @@ import { createContext } from 'react'
 //creo il contesto
 
 
-const GlobalContext = createContext(); 
+const FilmsContext = createContext(); 
 
 //creare provider
 
-export default GlobalContext
+export default FilmsContextProvider ({children}){
+
+    
+
+}

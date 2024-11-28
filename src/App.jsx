@@ -1,17 +1,19 @@
-import GlobalContext from './context/GlobalContext'
+import FilmsContext from './context/GlobalContext'
+import { useState } from 'react'
 
 import './App.css'
 
 function App() {
 
+  const [ films , setFilms] = useState({})
 
   return (
     <>
 
-      <GlobalContext.Provider value={}>
+      <FilmsContext.Provider value={films}>
 
         {/* la route*/}
-      </GlobalContext.Provider>
+      </FilmsContext.Provider>
    
     </>
   )
