@@ -11,7 +11,7 @@ const FilmsContext = createContext();
 export default function FilmsContextProvider({children}){
 
     const [ films, setFilms] = useState ([])
-    const [searchTitle, setSearchTitle] = useState('');
+    const [searchText, setSearchText] = useState('');
     
 
     function fetchResults(title){
@@ -20,8 +20,8 @@ export default function FilmsContextProvider({children}){
             console.error('nessun risultato trovato!');
             return;
         }
-        const apiKey = '3d5a0c215d6ca4a4fe980f405ca9b287'
-        const url_films = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${title}`;
+        const apiKey = import.meta.env.VITE_API_KEY;
+        const url_films = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchText}`;
 
 
         fetch(url_films)
@@ -34,16 +34,16 @@ export default function FilmsContextProvider({children}){
 
     }
     useEffect(() => {
-        if (searchTitle) {
-            fetchResults (searchTitle);
+        if (searchText) {
+            fetchResults (searchText);
 }
-}, [searchTitle])
+}, [searchText])
 
         {/* fornire il valore ai children*/}
         return(
 
             
-            <FilmsContext.Provider value={{films, setSearchTitle}}>
+            <FilmsContext.Provider value={{films, setSearchText}}>
 
                 {children}
 
