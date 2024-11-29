@@ -5,13 +5,19 @@ import FilmsList from './components/FilmList.jsx';
 
 function App() {
     return (
+      <>
         <FilmsContextProvider>
-            <div>
+            
+               <header>
                 <h1>Cerca Film</h1>
                 <SearchBar />
+              </header>
+              
                 <FilmsList />
-            </div>
+          
         </FilmsContextProvider>
+        
+      </>
     );
 }
 

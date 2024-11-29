@@ -42,15 +42,17 @@ export default function FilmsContextProvider({children}){
             
         }
 
-        function HandleImageMovies(posterpath){
-
-            const imagepath = posterpath?.poster_path
+        function handleImageMovies(posterpath){
+            
             const size = 'w500'
             const url_img = 'https://image.tmdb.org/t/p/'
 
-            const urlImage = `${url_img}${size}${imagepath}`
+            const urlImage = `${url_img}${size}${posterpath}`
 
+            
             return urlImage
+            
+            
 
 
         }
@@ -64,7 +66,7 @@ export default function FilmsContextProvider({children}){
             setFilms,
             HandleSearchBar,
             url_films,
-            HandleImageMovies
+            handleImageMovies
 
         }
     
