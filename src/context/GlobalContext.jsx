@@ -1,8 +1,6 @@
 import { createContext, useState, useEffect, useContext } from 'react';
 
-
 //creo il contesto
-
 
 const FilmsContext = createContext(); 
 
@@ -12,10 +10,6 @@ export default function FilmsContextProvider({children}){
 
     const [ films, setFilms] = useState ([])
     const [searchText, setSearchText] = useState('');
-    
-
-    
-
     
         const apiKey = import.meta.env.VITE_API_KEY;
         const url_films = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchText}`;
@@ -47,19 +41,26 @@ export default function FilmsContextProvider({children}){
             
         }
 
-        
-     
+        function HandleFlagLanguage(){
 
-        {/* fornire il valore ai children*/}
+
+        }
+
+        const values = {
+            searchText,
+            setSearchText,
+            films,
+            setFilms,
+            HandleSearchBar,
+            url_films
+
+        }
+    
+
         return(
 
             
-            <FilmsContext.Provider value={{searchText,
-                setSearchText,
-                films,
-                setFilms,
-                HandleSearchBar,
-                url_films}}>
+            <FilmsContext.Provider value={values}>
 
                 {children}
 
