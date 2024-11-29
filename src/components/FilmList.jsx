@@ -1,4 +1,5 @@
 import { useFilmsContext } from '../context/GlobalContext';
+import HandleFlagLanguage from './FlagLanguage';
 
 function FilmsList() {
     const { films } = useFilmsContext();
@@ -12,7 +13,7 @@ function FilmsList() {
                     <li key={index}>
                         <h3>{film.title}</h3>
                         <p><strong>Titolo originale:</strong> {film.original_title}</p>
-                        <p><strong>Lingua:</strong> {film.original_language}</p>
+                        <p><strong>Lingua:</strong> <HandleFlagLanguage language={film.original_language} /></p>
                         <p><strong>Voto:</strong> {film.vote_average}</p>
                     </li>
                 ))}
