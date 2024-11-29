@@ -14,36 +14,55 @@ export default function FilmsContextProvider({children}){
     const [searchText, setSearchText] = useState('');
     
 
-    function fetchResults(title){
+    
 
-        if (!title || title === '') {
-            console.error('nessun risultato trovato!');
-            return;
-        }
+    
         const apiKey = import.meta.env.VITE_API_KEY;
         const url_films = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchText}`;
 
 
-        fetch(url_films)
-        .then(resp =>resp.json())
-        .then(({results}) =>{
-            console.log(results);
-            setFilms(results)
+        useEffect(() =>{
+            fetch(url_films)
+                .then(resp =>resp.json())
+                .then(({results}) =>{
+                    console.log(results);
+                    setFilms(results)
             
-        })
+        });
 
-    }
-    useEffect(() => {
-        if (searchText) {
-            fetchResults (searchText);
-}
-}, [searchText])
+    }, [])
+
+        function HandleSearchBar(e) {
+            e.preventDefault();
+
+            console.log(url_films);
+
+            fetch(url_films)
+                .then(resp =>resp.json())
+                .then(({results}) =>{
+                    console.log(results);
+                    setFilms(results)
+            
+        });
+            
+        }
+
+        const values = {
+
+            searchText,
+            setSearchText,
+            films,
+            setFilms,
+            HandleSearchBar,
+            url_films
+        }
+     
 
         {/* fornire il valore ai children*/}
         return(
 
             
-            <FilmsContext.Provider value={{films, setSearchText}}>
+            <FilmsContext.Provider value={{values}}>
 
                 {children}
 
