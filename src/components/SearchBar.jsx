@@ -1,24 +1,24 @@
-import { useState } from 'react';
+
 import { useFilmsContext } from '../context/GlobalContext';
 
 function SearchBar() {
-    const [title, setTitle] = useState('');
-    const { setSearchTitle } = useFilmsContext();
+    
+    const { searchText, setSearchText, HandleSearchBar} = useFilmsContext();
 
-    const handleSearch = () => {
-        setSearchTitle(title);
-    };
+    //console.log({ searchText, setSearchText, HandleSearchBar });
 
     return (
         <>
         <div>
-            <input
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder="Cerca un film.."
-            />
-            <button onClick={handleSearch}>Cerca</button>
+            <form onSubmit={HandleSearchBar}>
+                <input
+                    type="text"
+                    value={searchText}
+                    onChange={(e) => setSearchText(e.target.value)}
+                    placeholder="Cerca un film.."
+                />
+                
+            </form>
         </div>
         </>
     );

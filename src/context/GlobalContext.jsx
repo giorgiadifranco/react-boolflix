@@ -47,22 +47,19 @@ export default function FilmsContextProvider({children}){
             
         }
 
-        const values = {
-
-            searchText,
-            setSearchText,
-            films,
-            setFilms,
-            HandleSearchBar,
-            url_films
-        }
+        
      
 
         {/* fornire il valore ai children*/}
         return(
 
             
-            <FilmsContext.Provider value={{values}}>
+            <FilmsContext.Provider value={{searchText,
+                setSearchText,
+                films,
+                setFilms,
+                HandleSearchBar,
+                url_films}}>
 
                 {children}
 
