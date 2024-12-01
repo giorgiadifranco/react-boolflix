@@ -57,6 +57,8 @@ export default function FilmsContextProvider({children}){
 
         }
 
+           
+
         
 
         const values = {
@@ -66,7 +68,8 @@ export default function FilmsContextProvider({children}){
             setFilms,
             HandleSearchBar,
             url_films,
-            handleImageMovies
+            handleImageMovies,
+           
 
         }
     
