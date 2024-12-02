@@ -11,10 +11,14 @@ export default function FilmsContextProvider({children}){
 
     const [ films, setFilms] = useState ([])
     const [searchText, setSearchText] = useState('');
+    const [ tvSeries, setTvSeries ] = useState ([]);
     
         const apiKey = import.meta.env.VITE_API_KEY;
         const url_films = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchText}`;
+        const url_tvseries = `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${searchText}`;
 
+       
+    /*}
 
         useEffect(() =>{
             fetch(url_films)
@@ -25,12 +29,20 @@ export default function FilmsContextProvider({children}){
             
         });
 
-    }, [url_films])
+    }, [url_films]) */
 
         function HandleSearchBar(e) {
             e.preventDefault();
 
             console.log(url_films);
+            console.log(url_tvseries);
+
+            fetch(url_tvseries)
+            .then(resp =>resp.json())
+            .then(({results}) =>{
+                console.log(results);
+                setTvSeries(results)
+            })
 
             fetch(url_films)
                 .then(resp =>resp.json())
@@ -51,11 +63,17 @@ export default function FilmsContextProvider({children}){
 
             
             return urlImage
-            
-            
-
-
+     
         }
+
+        function handleVote(vote){
+            
+
+
+            
+        }
+
+
 
            
 
@@ -66,6 +84,8 @@ export default function FilmsContextProvider({children}){
             setSearchText,
             films,
             setFilms,
+            tvSeries,
+            setTvSeries,
             HandleSearchBar,
             url_films,
             handleImageMovies,
