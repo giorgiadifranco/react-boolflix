@@ -1,5 +1,6 @@
 import { useFilmsContext } from '../context/GlobalContext';
 import HandleFlagLanguage from './FlagLanguage';
+import Rating from './Rating';
 
 function FilmsList() {
     const { films, tvSeries, handleImageMovies } = useFilmsContext();
@@ -17,7 +18,7 @@ function FilmsList() {
                         <img src={handleImageMovies(film.poster_path)} alt={film.title} />
                         <p><strong>Titolo originale:</strong> {film.original_title}</p>
                         <p><strong>Lingua:</strong> <HandleFlagLanguage language={film.original_language} /></p>
-                        <p><strong>Voto:</strong> {film.vote_average}</p>
+                        <p><strong>Voto:</strong> <Rating vote={film.vote_average} /></p>
                     </li>
                 ))}
             </ul>
@@ -30,7 +31,7 @@ function FilmsList() {
                         <img src={handleImageMovies(tvSerie.poster_path)} alt={tvSerie.original_name} />
                         <p><strong>Titolo originale:</strong> {tvSerie.original_name}</p>
                         <p><strong>Lingua:</strong> <HandleFlagLanguage language={tvSerie.original_language} /></p>
-                        <p><strong>Voto:</strong> {tvSerie.vote_average}</p>
+                        <strong>Rating:</strong> {tvSerie.vote_average}
                     </li>
                 ))}
             </ul>
